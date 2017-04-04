@@ -39,6 +39,7 @@ dependencies {
   compile rootProject.ext.libraries.loggingInterceptor
   compile rootProject.ext.libraries.gson
 
+  compile rootProject.ext.libraries.baserecycleradapter
   compile rootProject.ext.libraries.imageloaderGlide
 
   compile rootProject.ext.modules.presentation
