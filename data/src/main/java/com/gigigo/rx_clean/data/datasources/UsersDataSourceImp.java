@@ -4,11 +4,10 @@ import com.gigigo.rx_clean.data.api.ApiService;
 import com.gigigo.rx_clean.data.entities.ApiDataResponse;
 import com.gigigo.rx_clean.data.entities.ApiUser;
 import com.gigigo.rx_clean.domain.datasources.UsersDataSource;
+import com.gigigo.rx_clean.domain.entities.Location;
 import com.gigigo.rx_clean.domain.entities.Name;
 import com.gigigo.rx_clean.domain.entities.Picture;
 import com.gigigo.rx_clean.domain.entities.User;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +51,9 @@ public class UsersDataSourceImp implements UsersDataSource {
       user.setName(new Name(apiUser.getApiName().getTitle(), apiUser.getApiName().getFirst(),
           apiUser.getApiName().getLast()));
       user.setPhone(apiUser.getPhone());
+      user.setLocation(
+          new Location(apiUser.getApiLocation().getStreet(), apiUser.getApiLocation().getCity(),
+              apiUser.getApiLocation().getState(), apiUser.getApiLocation().getPostcode()));
       user.setPicture(
           new Picture(apiUser.getApiPicture().getLarge(), apiUser.getApiPicture().getMedium(),
               apiUser.getApiPicture().getThumbnail()));
