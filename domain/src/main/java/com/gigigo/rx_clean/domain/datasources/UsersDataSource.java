@@ -8,5 +8,6 @@ import java.util.List;
  */
 
 public interface UsersDataSource {
+
   List<User> getUsers(int count);
 }

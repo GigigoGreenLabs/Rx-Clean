@@ -8,12 +8,12 @@ public class ApiLocation {
   @SerializedName("street") @Expose private String street;
   @SerializedName("city") @Expose private String city;
   @SerializedName("state") @Expose private String state;
-  @SerializedName("postcode") @Expose private long postcode;
+  @SerializedName("postcode") @Expose private String postcode;
 
   public ApiLocation() {
   }
 
-  public ApiLocation(String street, String city, String state, long postcode) {
+  public ApiLocation(String street, String city, String state, String postcode) {
     super();
     this.street = street;
     this.city = city;
@@ -45,11 +45,11 @@ public class ApiLocation {
     this.state = state;
   }
 
-  public long getPostcode() {
+  public String getPostcode() {
     return postcode;
   }
 
-  public void setPostcode(long postcode) {
+  public void setPostcode(String postcode) {
     this.postcode = postcode;
   }
 }

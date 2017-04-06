@@ -5,12 +5,12 @@ public class Location {
   private String street;
   private String city;
   private String state;
-  private long postcode;
+  private String postcode;
 
   public Location() {
   }
 
-  public Location(String street, String city, String state, long postcode) {
+  public Location(String street, String city, String state, String postcode) {
     super();
     this.street = street;
     this.city = city;
@@ -42,11 +42,11 @@ public class Location {
     this.state = state;
   }
 
-  public long getPostcode() {
+  public String getPostcode() {
     return postcode;
   }
 
-  public void setPostcode(long postcode) {
+  public void setPostcode(String postcode) {
     this.postcode = postcode;
   }
 }

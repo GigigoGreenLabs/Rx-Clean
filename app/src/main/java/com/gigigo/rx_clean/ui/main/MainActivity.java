@@ -1,6 +1,7 @@
 package com.gigigo.rx_clean.ui.main;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -75,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
   }
 
   @Override public void showUsers(List<User> users) {
+    System.out.println("Activity showUsers: " + Thread.currentThread().getName());
+
     usersAdapter.clear();
 
     List<UserElement> userElements = mapDomainModelToPresentation(users);
@@ -91,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
           .append(" ")
           .append(user.getName().getLast())
           .toString();
-      String location = user.getLocation().getStreet();
+      String location = (user.getLocation() != null)? user.getLocation().getStreet() : "";
       UserElement userElement =
           new UserElement(user.getPicture().getThumbnail(), name, user.getPhone(), location);
 

@@ -7,9 +7,13 @@ import com.gigigo.rx_clean.domain.datasources.UsersDataSource;
 import com.gigigo.rx_clean.domain.entities.Name;
 import com.gigigo.rx_clean.domain.entities.Picture;
 import com.gigigo.rx_clean.domain.entities.User;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -26,6 +30,8 @@ public class UsersDataSourceImp implements UsersDataSource {
   }
 
   @Override public List<User> getUsers(int count) {
+    System.out.println("DataSource: " + Thread.currentThread().getName());
+
     Response<ApiDataResponse> dataResponse;
     try {
       dataResponse = apiService.getUsers(count).execute();
@@ -56,7 +62,12 @@ public class UsersDataSourceImp implements UsersDataSource {
   }
 
   private ApiService getApiService() {
+    HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+    interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+    OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
     Retrofit retrofit = new Retrofit.Builder().baseUrl("https://randomuser.me/api/")
+        .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build();
 
