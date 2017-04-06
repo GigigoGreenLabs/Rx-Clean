@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 import com.gigigo.baserecycleradapter.adapter.BaseRecyclerAdapter;
 import com.gigigo.baserecycleradapter.viewholder.BaseViewHolderFactory;
 import com.gigigo.rx_clean.R;
+import com.gigigo.rx_clean.di.Injector;
 import com.gigigo.rx_clean.domain.entities.User;
 import com.gigigo.rx_clean.presentation.main.MainPresenter;
 import com.gigigo.rx_clean.presentation.main.MainView;
@@ -16,7 +17,6 @@ import com.gigigo.rx_clean.ui.main.entities.UserElement;
 import com.gigigo.rx_clean.ui.main.factory.UserViewHolderFactory;
 import com.gigigo.rx_clean.ui.main.viewholder.UserViewHolder;
 import com.gigigo.ui.imageloader.ImageLoader;
-import com.gigigo.ui.imageloader.glide.GlideImageLoaderImp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
   }
 
   private void initDI() {
-    imageLoader = new GlideImageLoaderImp(this);
-    presenter = new MainPresenter();
+    imageLoader = Injector.provideImageLoader(this);
+    presenter = Injector.provideMainPresenter();
   }
 
   @Override public void initUi() {

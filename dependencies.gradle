@@ -7,6 +7,7 @@ allprojects {
                  dagger                     : 'com.github.GigigoGreenLabs.repackagedLibs:dagger:2.2.2',
 
                  retrofit                   : 'com.squareup.retrofit2:retrofit:2.0.2',
+                 gsonConverter              : 'com.squareup.retrofit2:converter-gson:2.0.2',
                  okHttp                     : 'com.squareup.okhttp3:okhttp:3.4.1',
                  loggingInterceptor         : 'com.squareup.okhttp3:logging-interceptor:3.4.1',
                  gson                       : 'com.google.code.gson:gson:2.6.2',
@@ -16,19 +17,18 @@ allprojects {
                  threaddecoratedviewCompiler: 'com.github.Gigigo-Android-Devs.gigigo-interactor-executor-library:threaddecoratedview-compiler:1.0.6',
 
                  imageloaderGlide           : 'com.github.Gigigo-Android-Devs.gigigo-imageLoader-library-android:imageloader-glide:1.2.6',
-                 baserecycleradapter        : 'com.github.Gigigo-Android-Devs:gigigo-baseRecyclerAdapter-library-android:1.4.3'
-          ]
+                 baserecycleradapter        : 'com.github.Gigigo-Android-Devs:gigigo-baseRecyclerAdapter-library-android:1.4.3']
 
     testLibraries = [mockito          : 'org.mockito:mockito-core:2.0.31-beta',
                      junit            : 'junit:junit:4.12',
                      assertj          : 'org.assertj:assertj-core:2.6.0',
                      androidTestRunner: 'com.android.support.test:runner:0.4.1',
-                     androidTestRules :   'com.android.support.test:rules:0.4.1',
+                     androidTestRules : 'com.android.support.test:rules:0.4.1',
                      espresso         : 'com.android.support.test.espresso:espresso-core:2.2.1',
                      mockWebServer    : 'com.squareup.okhttp:mockwebserver:2.6.0']
 
-    modules = [presentation      : project(':presentation'),
-               domain            : project(':domain'),
-               data              : project(':data')]
+    modules = [presentation: project(':presentation'),
+               domain      : project(':domain'),
+               data        : project(':data')]
   }
 }

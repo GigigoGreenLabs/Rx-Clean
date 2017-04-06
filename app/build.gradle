@@ -43,6 +43,7 @@ dependencies {
   compile rootProject.ext.libraries.imageloaderGlide
 
   compile rootProject.ext.modules.presentation
+  compile rootProject.ext.modules.domain
   compile rootProject.ext.modules.data
   compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }
