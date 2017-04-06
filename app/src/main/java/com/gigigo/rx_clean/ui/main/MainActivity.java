@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 import com.gigigo.baserecycleradapter.adapter.BaseRecyclerAdapter;
 import com.gigigo.baserecycleradapter.viewholder.BaseViewHolderFactory;
 import com.gigigo.rx_clean.R;
+import com.gigigo.rx_clean.domain.entities.User;
 import com.gigigo.rx_clean.presentation.main.MainPresenter;
 import com.gigigo.rx_clean.presentation.main.MainView;
 import com.gigigo.rx_clean.ui.main.entities.UserElement;
@@ -16,6 +17,8 @@ import com.gigigo.rx_clean.ui.main.factory.UserViewHolderFactory;
 import com.gigigo.rx_clean.ui.main.viewholder.UserViewHolder;
 import com.gigigo.ui.imageloader.ImageLoader;
 import com.gigigo.ui.imageloader.glide.GlideImageLoaderImp;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MainView {
 
@@ -71,8 +74,31 @@ public class MainActivity extends AppCompatActivity implements MainView {
     loadingProgress.setVisibility(View.INVISIBLE);
   }
 
-  @Override public void showUsers() {
+  @Override public void showUsers(List<User> users) {
+    usersAdapter.clear();
 
+    List<UserElement> userElements = mapDomainModelToPresentation(users);
+
+    usersAdapter.addAll(userElements);
+  }
+
+  private List<UserElement> mapDomainModelToPresentation(List<User> users) {
+    List<UserElement> userElements = new ArrayList<>();
+    for (User user : users) {
+      String name = new StringBuilder().append(user.getName().getTitle())
+          .append(" ")
+          .append(user.getName().getFirst())
+          .append(" ")
+          .append(user.getName().getLast())
+          .toString();
+      String location = user.getLocation().getStreet();
+      UserElement userElement =
+          new UserElement(user.getPicture().getThumbnail(), name, user.getPhone(), location);
+
+      userElements.add(userElement);
+    }
+
+    return userElements;
   }
 
   @Override protected void onStart() {

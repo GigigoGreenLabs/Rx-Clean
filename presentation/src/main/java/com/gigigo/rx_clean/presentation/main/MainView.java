@@ -1,5 +1,8 @@
 package com.gigigo.rx_clean.presentation.main;
 
+import com.gigigo.rx_clean.domain.entities.User;
+import java.util.List;
+
 /**
  * Created by rui.alonso on 4/4/17.
  */
@@ -10,5 +13,5 @@ public interface MainView {
   void showLoading();
   void hideLoading();
 
-  void showUsers();
+  void showUsers(List<User> users);
 }
