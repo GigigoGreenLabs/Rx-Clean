@@ -6,24 +6,24 @@ import java.util.List;
 
 public class ApiDataResponse {
 
-  @SerializedName("results") @Expose private List<ApiResult> apiResults = null;
+  @SerializedName("results") @Expose private List<ApiUser> apiUsers = null;
   @SerializedName("info") @Expose private ApiInfo apiInfo;
 
   public ApiDataResponse() {
   }
 
-  public ApiDataResponse(List<ApiResult> apiResults, ApiInfo apiInfo) {
+  public ApiDataResponse(List<ApiUser> apiUsers, ApiInfo apiInfo) {
     super();
-    this.apiResults = apiResults;
+    this.apiUsers = apiUsers;
     this.apiInfo = apiInfo;
   }
 
-  public List<ApiResult> getApiResults() {
-    return apiResults;
+  public List<ApiUser> getApiUsers() {
+    return apiUsers;
   }
 
-  public void setApiResults(List<ApiResult> apiResults) {
-    this.apiResults = apiResults;
+  public void setApiUsers(List<ApiUser> apiUsers) {
+    this.apiUsers = apiUsers;
   }
 
   public ApiInfo getApiInfo() {

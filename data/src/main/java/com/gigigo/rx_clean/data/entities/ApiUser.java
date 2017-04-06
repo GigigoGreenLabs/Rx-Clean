@@ -3,7 +3,7 @@ package com.gigigo.rx_clean.data.entities;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ApiResult {
+public class ApiUser {
 
   @SerializedName("gender") @Expose private String gender;
   @SerializedName("name") @Expose private ApiName apiName;
@@ -18,10 +18,10 @@ public class ApiResult {
   @SerializedName("picture") @Expose private ApiPicture apiPicture;
   @SerializedName("nat") @Expose private String nat;
 
-  public ApiResult() {
+  public ApiUser() {
   }
 
-  public ApiResult(String gender, ApiName apiName, ApiLocation apiLocation, String email,
+  public ApiUser(String gender, ApiName apiName, ApiLocation apiLocation, String email,
       ApiLogin apiLogin, String dob, String registered, String phone, String cell, ApiId apiId,
       ApiPicture apiPicture, String nat) {
     super();
