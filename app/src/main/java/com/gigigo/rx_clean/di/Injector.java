@@ -3,8 +3,10 @@ package com.gigigo.rx_clean.di;
 import android.content.Context;
 import com.gigigo.rx_clean.data.datasources.UsersDataSourceImp;
 import com.gigigo.rx_clean.domain.datasources.UsersDataSource;
+import com.gigigo.rx_clean.domain.executors.InteractorExecutor;
 import com.gigigo.rx_clean.domain.executors.MainThread;
 import com.gigigo.rx_clean.domain.executors.MainThreadImp;
+import com.gigigo.rx_clean.domain.executors.ThreadExecutor;
 import com.gigigo.rx_clean.domain.interactors.GetUsersInteractor;
 import com.gigigo.rx_clean.presentation.main.MainPresenter;
 import com.gigigo.ui.imageloader.ImageLoader;
@@ -32,8 +34,9 @@ public class Injector {
 
   public static GetUsersInteractor provideGetUsersInteractor() {
     UsersDataSource usersDataSource = provideUsersDataSource();
+    InteractorExecutor interactorExecutor = new ThreadExecutor();
     MainThread mainThread = provideMainThread();
-    GetUsersInteractor getUsersInteractor = new GetUsersInteractor(usersDataSource, mainThread);
+    GetUsersInteractor getUsersInteractor = new GetUsersInteractor(usersDataSource, interactorExecutor, mainThread);
     return getUsersInteractor;
   }
 
