@@ -1,7 +1,7 @@
 package com.gigigo.rx_clean.domain.interactors;
 
-import com.gigigo.rx_clean.domain.executors.InteractorExecutor;
 import com.gigigo.rx_clean.domain.executors.MainThread;
+import com.gigigo.rx_clean.domain.executors.ThreadExecutor;
 
 /**
  * Created by rui.alonso on 6/4/17.
@@ -9,11 +9,13 @@ import com.gigigo.rx_clean.domain.executors.MainThread;
 
 public abstract class Interactor<T> implements Runnable {
   protected InteractorCallback<T> callback;
-  protected InteractorExecutor interactorExecutor;
+  protected ThreadExecutor threadExecutor;
   protected MainThread mainThread;
+  public Thread callbackThread;
 
   public void execute() {
-    interactorExecutor.run(this);
+    callbackThread = Thread.currentThread();
+    threadExecutor.execute(this);
   }
 
   public void setCallback(InteractorCallback<T> callback) {

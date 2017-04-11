@@ -2,7 +2,7 @@ package com.gigigo.rx_clean.domain.interactors;
 
 import com.gigigo.rx_clean.domain.datasources.UsersDataSource;
 import com.gigigo.rx_clean.domain.entities.User;
-import com.gigigo.rx_clean.domain.executors.InteractorExecutor;
+import com.gigigo.rx_clean.domain.executors.ThreadExecutor;
 import com.gigigo.rx_clean.domain.executors.MainThread;
 import java.util.List;
 
@@ -13,9 +13,9 @@ import java.util.List;
 public class GetUsersInteractor extends Interactor<List<User>> {
   private UsersDataSource usersDataSource;
 
-  public GetUsersInteractor(UsersDataSource usersDataSource, InteractorExecutor interactorExecutor, MainThread mainThread) {
+  public GetUsersInteractor(UsersDataSource usersDataSource, ThreadExecutor threadExecutor, MainThread mainThread) {
     this.usersDataSource = usersDataSource;
-    this.interactorExecutor = interactorExecutor;
+    this.threadExecutor = threadExecutor;
     this.mainThread = mainThread;
   }
 
