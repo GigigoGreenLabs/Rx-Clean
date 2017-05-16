@@ -9,6 +9,8 @@ dependencies {
   compile rootProject.ext.modules.domain
 
   testCompile rootProject.ext.testLibraries.junit
+
+
 }
 
 task cleanPresentation(type: Delete) {

@@ -1,7 +1,7 @@
 package com.gigigo.rx_clean.data.api;
 
 import com.gigigo.rx_clean.data.entities.ApiDataResponse;
-import retrofit2.Call;
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Query;
@@ -13,5 +13,5 @@ import retrofit2.http.Query;
 public interface ApiService {
 
   @Headers("Content-Type: application/json")
-  @GET(" ") Call<ApiDataResponse> getUsers(@Query("results") int count);
+  @GET(" ") Observable<ApiDataResponse> getUsers(@Query("results") int count);
 }

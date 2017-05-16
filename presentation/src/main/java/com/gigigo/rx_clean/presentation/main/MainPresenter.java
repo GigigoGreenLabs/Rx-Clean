@@ -17,6 +17,8 @@ public class MainPresenter implements Presenter {
   public MainPresenter(GetUsersInteractor getUsersInteractor) {
     System.out.println("Presenter: " + Thread.currentThread().getName());
 
+
+
     this.getUsersInteractor = getUsersInteractor;
     this.getUsersInteractor.setCallback(new InteractorCallback<List<User>>() {
       @Override public void onSuccess(List<User> response) {

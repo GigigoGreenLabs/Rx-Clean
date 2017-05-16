@@ -8,9 +8,12 @@ import com.gigigo.rx_clean.domain.entities.Location;
 import com.gigigo.rx_clean.domain.entities.Name;
 import com.gigigo.rx_clean.domain.entities.Picture;
 import com.gigigo.rx_clean.domain.entities.User;
+import io.reactivex.Observable;
+import io.reactivex.functions.Function;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Response;
@@ -28,19 +31,14 @@ public class UsersDataSourceImp implements UsersDataSource {
     this.apiService = getApiService();
   }
 
-  @Override public List<User> getUsers(int count) {
+  @Override public Observable<List<User>> getUsers(int count) {
     System.out.println("DataSource: " + Thread.currentThread().getName());
-
-    Response<ApiDataResponse> dataResponse;
-    try {
-      dataResponse = apiService.getUsers(count).execute();
-      List<User> users = mapApiModelToDomain(dataResponse.body().getApiUsers());
-      return users;
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
-    return null;
+    
+    return apiService.getUsers(count).map(new Function<ApiDataResponse, List<User>>() {
+      @Override public List<User> apply(ApiDataResponse apiDataResponse) throws Exception {
+        return mapApiModelToDomain(apiDataResponse.getApiUsers());
+      }
+    });
   }
 
   private List<User> mapApiModelToDomain(List<ApiUser> apiUsers) {
