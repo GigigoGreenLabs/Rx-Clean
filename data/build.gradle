@@ -28,6 +28,11 @@ dependencies {
   compile rootProject.ext.libraries.gsonConverter
   compile rootProject.ext.libraries.loggingInterceptor
 
+
+  compile rootProject.ext.libraries.rxAndroid
+  compile rootProject.ext.libraries.rxJava
+
+
   compile rootProject.ext.modules.domain
 
   testCompile rootProject.ext.testLibraries.junit

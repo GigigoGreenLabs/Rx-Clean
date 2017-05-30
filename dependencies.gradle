@@ -17,7 +17,11 @@ allprojects {
                  threaddecoratedviewCompiler: 'com.github.Gigigo-Android-Devs.gigigo-interactor-executor-library:threaddecoratedview-compiler:1.0.6',
 
                  imageloaderGlide           : 'com.github.Gigigo-Android-Devs.gigigo-imageLoader-library-android:imageloader-glide:1.2.6',
-                 baserecycleradapter        : 'com.github.Gigigo-Android-Devs:gigigo-baseRecyclerAdapter-library-android:1.4.3']
+                 baserecycleradapter        : 'com.github.Gigigo-Android-Devs:gigigo-baseRecyclerAdapter-library-android:1.4.3',
+
+                 rxAndroid                  : 'io.reactivex.rxjava2:rxandroid:2.0.1',
+                 rxJava                     : 'io.reactivex.rxjava2:rxjava:2.1.0'
+                  ]
 
     testLibraries = [mockito          : 'org.mockito:mockito-core:2.0.31-beta',
                      junit            : 'junit:junit:4.12',
