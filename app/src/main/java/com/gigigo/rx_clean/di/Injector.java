@@ -45,7 +45,7 @@ public class Injector {
 
   public static GetUserInteractorRx provideGetUsersInteractorRx() {
     UsersDataSource usersDataSource = provideUsersDataSource();
-    return new GetUserInteractorRx(usersDataSource, Schedulers.io(), AndroidSchedulers.mainThread());
+    return new GetUserInteractorRx(usersDataSource, AndroidSchedulers.mainThread(), Schedulers.io());
   }
 
   public static UsersDataSource provideUsersDataSource() {
