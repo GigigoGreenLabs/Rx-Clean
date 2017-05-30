@@ -22,8 +22,6 @@ public class MainPresenter implements Presenter {
 
     this.getUsersInteractor = getUsersInteractor;
 
-
-
   //  this.getUsersInteractor.setCallback(new InteractorCallback<List<User>>() {
   //    @Override public void onSuccess(List<User> response) {
   //      System.out.println("Presenter callback: " + Thread.currentThread().getName());
@@ -44,6 +42,7 @@ public class MainPresenter implements Presenter {
   }
 
   public void detachView() {
+    getUsersInteractor.dispose();
     this.view = null;
   }
 
