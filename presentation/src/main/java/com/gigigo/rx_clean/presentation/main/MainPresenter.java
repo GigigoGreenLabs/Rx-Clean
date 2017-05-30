@@ -1,9 +1,12 @@
 package com.gigigo.rx_clean.presentation.main;
 
 import com.gigigo.rx_clean.domain.entities.User;
+import com.gigigo.rx_clean.domain.interactors.GetUserInteractorRx;
 import com.gigigo.rx_clean.domain.interactors.GetUsersInteractor;
 import com.gigigo.rx_clean.domain.interactors.InteractorCallback;
 import com.gigigo.rx_clean.presentation.Presenter;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.observers.DisposableObserver;
 import java.util.List;
 
 /**
@@ -12,26 +15,27 @@ import java.util.List;
 
 public class MainPresenter implements Presenter {
   private MainView view;
-  private GetUsersInteractor getUsersInteractor;
+  private GetUserInteractorRx getUsersInteractor;
 
-  public MainPresenter(GetUsersInteractor getUsersInteractor) {
+  public MainPresenter(GetUserInteractorRx getUsersInteractor) {
     System.out.println("Presenter: " + Thread.currentThread().getName());
 
-
-
     this.getUsersInteractor = getUsersInteractor;
-    this.getUsersInteractor.setCallback(new InteractorCallback<List<User>>() {
-      @Override public void onSuccess(List<User> response) {
-        System.out.println("Presenter callback: " + Thread.currentThread().getName());
 
-        view.showUsers(response);
-        view.hideLoading();
-      }
 
-      @Override public void onError(String message) {
-        view.hideLoading();
-      }
-    });
+
+  //  this.getUsersInteractor.setCallback(new InteractorCallback<List<User>>() {
+  //    @Override public void onSuccess(List<User> response) {
+  //      System.out.println("Presenter callback: " + Thread.currentThread().getName());
+  //
+  //      view.showUsers(response);
+  //      view.hideLoading();
+  //    }
+  //
+  //    @Override public void onError(String message) {
+  //      view.hideLoading();
+  //    }
+  //  });
   }
 
   public void attachView(MainView view) {
@@ -53,6 +57,26 @@ public class MainPresenter implements Presenter {
 
   private void loadData() {
     view.showLoading();
-    getUsersInteractor.execute();
+
+    GetUserInteractorRx.Params params = GetUserInteractorRx.Params.count(100);
+
+    GetUserObserver listGetUserObserver = new GetUserObserver();
+
+    getUsersInteractor.execute(listGetUserObserver, params);
+  }
+
+  private class GetUserObserver extends DisposableObserver<List<User>> {
+
+    @Override public void onNext(@NonNull List<User> response) {
+      view.showUsers(response);
+    }
+
+    @Override public void onError(@NonNull Throwable e) {
+      view.hideLoading();
+    }
+
+    @Override public void onComplete() {
+      view.hideLoading();
+    }
   }
 }

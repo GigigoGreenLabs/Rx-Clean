@@ -10,7 +10,7 @@ public class GetUserInteractorRx extends UseCase<List<User>, GetUserInteractorRx
 
 private final UsersDataSource usersDataSource;
 
-  protected GetUserInteractorRx(UsersDataSource usersDataSource,Scheduler scheduler,Scheduler postExecutionScheduler){
+  public GetUserInteractorRx(UsersDataSource usersDataSource,Scheduler scheduler,Scheduler postExecutionScheduler){
     super(scheduler,postExecutionScheduler);
     this.usersDataSource=usersDataSource;
   }

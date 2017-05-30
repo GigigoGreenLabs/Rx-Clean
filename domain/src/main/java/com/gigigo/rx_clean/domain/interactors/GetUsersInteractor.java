@@ -22,8 +22,8 @@ public class GetUsersInteractor extends Interactor<List<User>> {
   @Override public void run() {
     try {
       System.out.println("Interactor: " + Thread.currentThread().getName());
-      List<User> users = usersDataSource.getUsers(500);
-      notifySuccess(users);
+      //List<User> users = usersDataSource.getUsers(500);
+      //notifySuccess(users);
     } catch (Exception e) {
       notifyError(e);
     }
